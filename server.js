@@ -74,9 +74,11 @@ app.get("/", function (req, res) {
 
 app.put("/articles/:id", function (req, res) {
   db.Article.findOneAndUpdate({
-     _id: req.params.id },
+    _id: req.params.id
+  },
 
-    {$set: { isSaved: true },
+    {
+      $set: { isSaved: true },
 
       // function(err,doc) {
       //   if (err) { throw err; }
@@ -90,6 +92,25 @@ app.put("/articles/:id", function (req, res) {
       };
       res.render('saved', hbsObjext);
     });
+});
+
+app.delete("/articles/:id", function (req, res) {
+  db.Article.remove({ _id: req.params.id }
+
+
+
+      // function(err,doc) {
+      //   if (err) { throw err; }
+      //   else { console.log("Updated isSaved to true"); }
+      // );
+
+
+    ).then(function (data) {
+    var hbsObjext = {
+      articles: data
+    };
+    res.render('saved', hbsObjext);
+  });
 });
 
 

@@ -23,6 +23,14 @@ background-size: cover;
 .jumbotron h1 {
     color: white;
 }
+
+.deleteArticle {
+    background-color: red;
+}
+
+.saveButton {
+    background-color: green;
+}
 .footer {
     position: fixed;
     bottom: 0;
