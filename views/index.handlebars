@@ -17,34 +17,31 @@
     </div>
 </nav>
 
-<div class= container-fluid>
-<div class="jumbotron text-center ">
-    <!--
-    <div class="overlay">
-    </div> --}}
-    <div class="backgroundpic">
-    </div> -->
-    <div class="caption">
-        <h1>News Scraper</h1>
-        <p>New York Times Edition</p>
+<div class=container-fluid>
+    <div class="jumbotron text-center ">
+        <div class="caption">
+            <h1>News Scraper</h1>
+            <p>New York Times Edition</p>
+        </div>
     </div>
-</div>
 </div>
 
 <!-- insert articles here    -->
-{{#each articles}} 
-{{#unless saved}}
+{{#each articles}}
+ {{#unless this.isSaved}}
 <div class="container-fluid article-container">
-<div class="card" style="width: 95%;">
-  <div class="card-body">
-    <h5 class="card-title"><a href="{{link}}" target="_blank">{{title}}</a></h5>
-    <p class="card-text">{{summary}}</p>
-    <a href="#" class="btn btn-primary" id="saveArticle">Save Article</a>
-  </div>
-</div>
+    <div class="card" style="width: 95%;">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="{{link}}" target="_blank">{{title}}</a>
+            </h5>
+            <p class="card-text">{{summary}}</p>
+            <a href="#" class="btn btn-primary" data-id="{{_id}}">Save Article</a>
+        </div>
+    </div>
 </div>
 <hr>
-{{/unless}} 
+ {{/unless}} 
 {{/each}}
 
 <br>

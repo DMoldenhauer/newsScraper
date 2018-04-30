@@ -21,24 +21,40 @@ $(document).on("click", ".scrape-new", function (event) {
   .catch(function(err){
     console.log(err)
   })
-    // With that done
-    // .then(function (data) {
-      // Log the response
-      // console.log("ajax scrape ran");
-      // Reload the page to get the updated articles
-      // app.get("/", function(req, res) {
+});
 
-      //   db.Article.find({
-              
-      //   }).then(function(data) {
-      //       var hbsObjext = {
-      //           articles: data
-      //         };
-      //     res.render('index', hbsObjext);
-        // });
-        
+$(document).on("click", ".btn", function (event) {
+  event.preventDefault()
+  console.log ("save article button event handler ran");
+  var articleID = $(this).data("id");
+  // console.log (this);
+  console.log (articleID);
+  $.ajax({
+    method: "PUT",
+    url: "/articles/" + articleID,
+    isSaved: true,
+    success: function(){
+      console.log("ajax note  ran");
+      location.reload()
+    }
+  })
+  .catch(function(err){
+    console.log(err)
+  })
+
+
+
+
 
 });
+
+
+
+
+
+
+
+
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function () {

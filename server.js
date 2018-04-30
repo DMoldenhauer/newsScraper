@@ -40,6 +40,7 @@ app.use(bodyParser.json());
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+// app.set('view options', { layout: "saved" });
 
 // require("./controllers/html-routes.js")(app);
 
@@ -59,21 +60,48 @@ mongoose.connect("mongodb://localhost/newsScraper");
 
 // Routes
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
 
-db.Article.find({
-      
-}).then(function(data) {
+  db.Article.find({
+
+  }).then(function (data) {
     var hbsObjext = {
+      articles: data
+    };
+    res.render('index', hbsObjext);
+  });
+});
+
+app.put("/articles/:id", function (req, res) {
+  db.Article.findOneAndUpdate({
+     _id: req.params.id },
+
+    {$set: { isSaved: true },
+
+      // function(err,doc) {
+      //   if (err) { throw err; }
+      //   else { console.log("Updated isSaved to true"); }
+      // );
+
+
+    }).then(function (data) {
+      var hbsObjext = {
         articles: data
       };
-  res.render('index', hbsObjext);
-});
+      res.render('saved', hbsObjext);
+    });
 });
 
 
-app.get("/saved", function(req, res) {
-  res.render("saved");
+app.get("/saved", function (req, res) {
+  db.Article.find({
+
+  }).then(function (data) {
+    var hbsObjext = {
+      articles: data
+    };
+    res.render('saved', hbsObjext);
+  });
 });
 
 
