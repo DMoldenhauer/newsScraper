@@ -60,8 +60,17 @@ mongoose.connect("mongodb://localhost/newsScraper");
 // Routes
 
 app.get("/", function(req, res) {
-  res.render("index");
+
+db.Article.find({
+      
+}).then(function(data) {
+    var hbsObjext = {
+        articles: data
+      };
+  res.render('index', hbsObjext);
 });
+});
+
 
 app.get("/saved", function(req, res) {
   res.render("saved");
