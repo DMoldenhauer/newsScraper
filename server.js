@@ -127,7 +127,7 @@ app.get("/saved", function (req, res) {
 
 
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping the NYT website
 app.get("/scrape", function (req, res) {
   // First, we grab the body of the html with request
   axios.get("https://www.nytimes.com/").then(function (response) {
